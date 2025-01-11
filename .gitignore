@@ -1,0 +1,9 @@
+# Folgende Ordner sollen nicht betrachtet werden
+/00_Archiv/**/*
+/build/**/*
+/dist/**/*
+# Folgende Dateien sollen nicht betrachtet werden
+*.spec
+*.exe
+Protoss Test 10sec.txt
+
