@@ -1,7 +1,7 @@
 import sys
 import GUI  # Importiert GUI
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QLineEdit, QPushButton, QVBoxLayout, QWidget, QComboBox, QLabel, QTextBrowser, QMessageBox, QShortcut
-from PyQt5.QtGui import QKeySequence
+from PyQt5.QtGui import QKeySequence, QStandardItem, QStandardItemModel
 from PyQt5.QtCore import QTimer
 from functools import partial
 import os
@@ -126,6 +126,7 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
     def function_start(self):
         # Timer Start/Resume
         print("Funktion function_start aktiv")
+
         # Sichtbarkeit der Buttons aktivieren/deaktivieren
         self.btn_Timer_Start.setEnabled(False)
         self.btn_Timer_Stop.setEnabled(True)
@@ -174,6 +175,9 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
             self.textBrowser_timer.setText(remaining_time_str)  # Differenzzeit bis zum nächsten Objekt anzeigen
             self.textBrowser_object.setText(self.built_object[0])  # Erstes Bau-Objekt anzeigen
             self.textBrowser_probe_nr.setText(str(self.worker_nr[0]))  # Anzahl der Worker anzeigen
+
+        # Neuer Code: Fülle das TableView mit den Daten
+        self.populate_table_view()
 
         # Timer starten
         self.timer.start(1000)  # Timer alle 1000 ms (1 Sekunde) auslösen
@@ -234,6 +238,25 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
             msg_box.setStandardButtons(QMessageBox.Ok)
             msg_box.exec_() # Fenster anzeigen
         return data
+
+    def populate_table_view(self):
+        # Neues Model für das TableView erstellen
+        model = QStandardItemModel()
+
+        # Setze die Header (Spaltenüberschriften)
+        model.setHorizontalHeaderLabels(["Zeit (Min:Sek)", "Worker Nr.", "Bau-Objekt"])
+
+        # Füge die Daten in das Model ein
+        for i in range(len(self.timer_min_sec)):
+            row = [
+                QStandardItem(self.timer_min_sec[i]),
+                QStandardItem(str(self.worker_nr[i])),
+                QStandardItem(self.built_object[i])
+            ]
+            model.appendRow(row)
+
+        # Setze das Model in das TableView
+        self.tableView.setModel(model)
 
 #######################################################
 #                   Main Function
