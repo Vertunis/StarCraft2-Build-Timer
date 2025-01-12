@@ -1,7 +1,7 @@
 import sys
 import GUI  # Importiert GUI
-from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QLineEdit, QPushButton, QVBoxLayout, QWidget, QComboBox, QLabel, QTextBrowser, QMessageBox, QShortcut
-from PyQt5.QtGui import QKeySequence, QStandardItem, QStandardItemModel
+from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QLineEdit, QPushButton, QVBoxLayout, QWidget, QComboBox, QLabel, QTextBrowser, QMessageBox, QShortcut, QHeaderView
+from PyQt5.QtGui import QKeySequence, QStandardItem, QStandardItemModel, QColor
 from PyQt5.QtCore import QTimer
 from functools import partial
 import os
@@ -23,7 +23,7 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
         #           Connect Buttons, Text, Widgets etc.
         ########################################################
         # Überschrift
-        version = "V.0.3.0"
+        version = "V.0.4.0"
         self.setWindowTitle(f"Star Craft II Build Timer {version}")  # Fenstertitel
 
         # Tool Tab
@@ -122,6 +122,8 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
         self.progressBar_TimeSinceStart.setValue(self.time_elapsed)
         self.label_current_time.setText(current_time_str)
 
+        # Aktualisiere das TableView mit der grünen Markierung
+        self.populate_table_view()
 
     def function_start(self):
         # Timer Start/Resume
@@ -244,7 +246,7 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
         model = QStandardItemModel()
 
         # Setze die Header (Spaltenüberschriften)
-        model.setHorizontalHeaderLabels(["Zeit (Min:Sek)", "Worker Nr.", "Bau-Objekt"])
+        model.setHorizontalHeaderLabels(["Time", "Worker", "Objekt"])
 
         # Füge die Daten in das Model ein
         for i in range(len(self.timer_min_sec)):
@@ -255,8 +257,21 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
             ]
             model.appendRow(row)
 
+            # Wenn diese Zeile die aktuelle Zeile ist, grün markieren
+            if i == self.current_index:
+                for column in range(3):  # Wir haben 3 Spalten (Zeit, Worker, Bau-Objekt)
+                    item = model.item(i, column)
+                    item.setBackground(QColor(0, 255, 0))  # Setze Hintergrund auf grün
+
         # Setze das Model in das TableView
         self.tableView.setModel(model)
+        # Zugriff auf den horizontalen Header
+        header = self.tableView.horizontalHeader()
+
+        # Passe die Breite der Spalten an
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)  # "Time" Spalte
+        header.setSectionResizeMode(1, QHeaderView.ResizeToContents)  # "Worker #" Spalte
+        header.setSectionResizeMode(2, QHeaderView.Stretch)          # "Objekt" Spalte
 
 #######################################################
 #                   Main Function
