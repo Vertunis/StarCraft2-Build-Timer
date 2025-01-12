@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>789</width>
-    <height>689</height>
+    <width>787</width>
+    <height>635</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -421,26 +421,13 @@
      </attribute>
     </widget>
    </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>590</y>
-      <width>411</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Reminder: Eventuell mit StackedWidget als Einklappoption probieren</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>789</width>
+     <width>787</width>
      <height>26</height>
     </rect>
    </property>
