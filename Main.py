@@ -1,6 +1,6 @@
 import sys
 import GUI  # Importiert GUI
-from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QLineEdit, QPushButton, QVBoxLayout, QWidget, QComboBox, QLabel, QTextBrowser, QMessageBox, QShortcut, QHeaderView
+from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QLineEdit, QPushButton, QVBoxLayout, QWidget, QComboBox, QLabel, QTextBrowser, QMessageBox, QShortcut, QHeaderView, QTableView
 from PyQt5.QtGui import QKeySequence, QStandardItem, QStandardItemModel, QColor
 from PyQt5.QtCore import QTimer
 from functools import partial
@@ -23,7 +23,7 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
         #           Connect Buttons, Text, Widgets etc.
         ########################################################
         # Überschrift
-        version = "V.0.4.0"
+        version = "V.0.4.1"
         self.setWindowTitle(f"Star Craft II Build Timer {version}")  # Fenstertitel
 
         # Tool Tab
@@ -40,7 +40,7 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
         # ProgressBar initialisieren
         self.progressBar_TimeSinceStart.setMinimum(0)
         self.progressBar_TimeSinceStart.setMaximum(100) # Placeholder, wird in function_start aktualisiert
-
+        self.progressBar_TimeSinceStart.setValue(0)
         # Übergabevariablen initialisieren
         self.current_built = None
 
@@ -87,11 +87,14 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
         seconds = self.time_elapsed % 60
         current_time_str = f"{minutes}:{seconds:02}"  # Formatierte Zeit <min:sec>
 
-        # Vergleich der aktuellen Zeit mit der Liste
-        if self.current_index < len(self.timer_min_sec):  # Sicherstellen, dass der Index gültig ist
+        if self.current_index < len(self.timer_min_sec):
             next_time = self.timer_min_sec[self.current_index]
             next_minutes, next_seconds = map(int, next_time.split(":"))
             next_total_seconds = next_minutes * 60 + next_seconds
+
+            # Direkte Priorisierung: TextBrowser aktualisieren
+            self.textBrowser_probe_nr.setText(f"{self.worker_nr[self.current_index]}")
+            self.textBrowser_object.setText(self.built_object[self.current_index])
 
             # Differenzzeit berechnen
             remaining_seconds = max(next_total_seconds - self.time_elapsed, 0)
@@ -99,30 +102,15 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
             remaining_seconds %= 60
             remaining_time_str = f"{remaining_minutes}:{remaining_seconds:02}"
 
-            # Update TextBrowser für Differenzzeit
             self.textBrowser_timer.setText(remaining_time_str)
-
-            # Nächstes zu bauendes Objekt anzeigen
-            self.textBrowser_object.setText(self.built_object[self.current_index])
 
             # Aktion ausführen, wenn die aktuelle Zeit das nächste Bau-Event erreicht
             if self.time_elapsed == next_total_seconds:
-                print(f"Zeit erreicht: {current_time_str}. Ausführen: {self.built_object[self.current_index]}")
-
-                # Update der Anzeige des gerade erreichten Objekts
-                self.textBrowser_probe_nr.setText(f"{self.worker_nr[self.current_index]}")
-
-                # Index für das nächste Event erhöhen
                 self.current_index += 1
 
-        else:  # Wenn das Ende der Liste erreicht ist, stoppe den Timer
-            self.function_stop()
-
-        # Update ProgressBar
+        # Update ProgressBar und andere Elemente
         self.progressBar_TimeSinceStart.setValue(self.time_elapsed)
         self.label_current_time.setText(current_time_str)
-
-        # Aktualisiere das TableView mit der grünen Markierung
         self.populate_table_view()
 
     def function_start(self):
@@ -265,6 +253,7 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
 
         # Setze das Model in das TableView
         self.tableView.setModel(model)
+
         # Zugriff auf den horizontalen Header
         header = self.tableView.horizontalHeader()
 
@@ -272,6 +261,13 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
         header.setSectionResizeMode(0, QHeaderView.ResizeToContents)  # "Time" Spalte
         header.setSectionResizeMode(1, QHeaderView.ResizeToContents)  # "Worker #" Spalte
         header.setSectionResizeMode(2, QHeaderView.Stretch)          # "Objekt" Spalte
+
+        # Scrolle zur aktuellen Zeile und halte sie an der dritten Stelle sichtbar
+        if self.current_index < len(self.timer_min_sec):
+            index = model.index(self.current_index, 0)  # Index der aktuellen Zeile
+            self.tableView.scrollTo(index)  # Scrolle zur aktuellen Zeile
+            viewport_row = max(self.current_index - 2, 0)  # Stelle sicher, dass die Zeile an 3. Stelle bleibt
+            self.tableView.scrollTo(model.index(viewport_row, 0), QTableView.PositionAtTop)
 
 #######################################################
 #                   Main Function
