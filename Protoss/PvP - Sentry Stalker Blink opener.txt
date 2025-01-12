@@ -1,0 +1,19 @@
+  14	  0:18	  Pylon	  
+  16	  0:38	  Gateway (Chrono Boost)	  gate scout
+  17	  0:46	  Assimilator	  
+  18	  0:56	  Assimilator	  
+  19	  1:10	  Gateway (Chrono Boost)	  rally into gas, 16&2&2 gas split, into 3&3 gas
+  21	  1:21	  Cybernetics Core	  
+  22	  1:37	  Pylon	  
+  24	  2:03	  Warp Gate, Sentry	  cut probes (should be at full saturation), and one extra probe downstairs ready to build natural (battery full wall to block enemy probe in base, prevents blocking your base)
+  26	  2:26	  Nexus	  cancel battery if built to block
+  26	  2:30	  Sentry	  
+  28	  2:35	  Pylon	  resume probing after pylon
+  29	  2:39	  Stalker	  
+  31	  2:52	  Stalker	  
+  33	  3:00	  Shield Battery	  optional for saftey
+  35	  3:20	  Twilight Council	  I think any tech here is fine
+  40	  3:50	  Stalker x2	  1st warp-in when warp gate finishes
+  46	  4:00	  Blink	  
+  46	  4:14	  Stalker x2	  2nd warp-in
+  50	  4:30	  Pylon	  ready for 3rd

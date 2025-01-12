@@ -1,0 +1,21 @@
+  14	  0:17	  Pylon	  
+  16	  0:37	  Gateway	  
+  16	  0:43	  Assimilator	  
+  17	  0:51	  Assimilator	  
+  19	  1:10	  Gateway	  
+  21	  1:24	  Cybernetics Core	  
+  22	  1:35	  Pylon	  
+  23	  1:58	  Warp Gate (Chrono Boost)	  
+  23	  2:01	  Adept x2	  
+  27	  2:07	  Pylon	  
+  27	  2:16	  Stargate	  
+  27	  2:31	  Adept x2	  
+  31	  2:49	  Nexus	  
+  31	  2:59	  Oracle (Chrono Boost)	  
+  31	  3:05	  Pylon	  
+  34	  3:10	  Adept	  
+  36	  3:17	  Adept	  
+  38	  3:27	  Oracle	  
+  43	  3:52	  Pylon	  
+  43	  3:55	  Adept x2	  
+  49	  4:16	  Robotics Facility

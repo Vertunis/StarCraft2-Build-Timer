@@ -1,0 +1,68 @@
+  14	  017	  Pylon	  ( 1.)
+  16	  038	  Gateway	  ( 1.  Scout w Probe)
+  17	  047	  Assimilator	  
+  18	  057	  Assimilator	  
+  19	  116	  Gateway	  ( 2.  Chrono Nexus)
+  21	  126	  Cybernetics Core	  
+  22	  139	  Pylon	  ( 2.)
+  24	  205	  Stalker, Sentry	  (Scout with Illusion-Phoenix)
+  28	  207	  Warp Gate	  
+  29	  216	  Pylon	  ( 3. at Natural)
+  30	  240	  Stalker x2	  
+  34	  302	  Nexus	  ( 2.)
+  34	  314	  Robotics Facility	  
+  35	  322	  Pylon	  ( 4.)
+  36	  330	  Forge	  (Chrono Nexus)
+  39	  348	  Stalker x2	  
+  45	  404	  Immortal (Chrono Boost), Observer	  ( 1.), (1.  scout Opponent)
+  45	  411	  Protoss Ground Weapons Level 1 (Chrono Boost)	  
+  51	  420	  Gateway x2	  ( 3. + 4.)
+  51	  430	  Assimilator x2	  
+  54	  444	  Twilight Council	  
+  56	  453	  Shield Battery	  ( at Natural)
+  58	  502	  Pylon	  ( 5. at Natural)
+  58	  511	  Stalker x2	  
+  58	  519	  Photon Cannon	  (at Main Base)
+  64	  527	  Templar Archives	  
+  64	  535	  Pylon	  ( 6. 3rd Base)
+  66	  542	  Immortal (Chrono Boost)	  ( 2.)
+  70	  549	  Nexus	  ( 3.)
+  70	  556	  Shield Battery	  ( at 3rd Base)
+  70	  603	  Pylon	  ( 7.)
+  70	  610	  Charge	  
+  70	  617	  Forge	  
+  74	  624	  Archon x2	  ( 1. via High Templar), ( 2.)
+  80	  631	  Pylon	  ( 8. at Main Base)
+  80	  638	  Gateway x2	  ( 5. + 6)
+  81	  645	  Protoss Ground Weapons Level 2 (Chrono Boost), Protoss Ground Armor Level 1 (Chrono Boost)	  (altern. Shields 1)
+  81	  652	  Photon Cannon	  (at Natural)
+  81	  659	  Pylon	  ( 9.)
+  83	  706	  Archon x2	  ( 3.), ( 4.)
+  93	  713	  Immortal (Chrono Boost)	  ( 3.)
+  96	  720	  Gateway x2	  ( 7. + 8.)
+  100	  727	  Pylon	  ( 10.)
+  103	  734	  Zealot x2	  
+  110	  741	  Zealot x2	  
+  110	  748	  Archon	  ( 5.)
+  110	  755	  Pylon x2	  ( 11.+12.)
+  123	  802	  Assimilator x2	  
+  123	  809	  Immortal	  (4.)
+  127	  816	  Protoss Ground Armor Level 2 (Chrono Boost)	  (altern. Shields 2)
+  127	  823	  Gateway x2	  ( 9. + 10.)
+  127	  830	  Pylon x2	  ( 13.+14.)
+  128	  837	  Zealot x4	  
+  138	  844	  Archon	  ( 6.)
+  138	  851	  Photon Cannon	  ( at 3rd Base)
+  138	  858	  Pylon x2	  ( 15.+16.)
+  152	  905	  Warp Prism	  
+  152	  912	  Archon	  ( 7.)
+  152	  919	  Pylon x2	  ( 17.+18.)
+  155	  926	  Archon	  ( 8.)
+  169	  933	  Observer x3	  ( 2. - 4.)
+  176	  940	  Archon	  ( 9.)
+  176	  947	  Pylon x2	  ( 19.+20.)
+  180	  954	  Gateway x2	  ( 11. + 12.)
+  180	  1001	  Sentry x4	  
+  188	  1008	  Zealot x4	  
+  196	  1015	  Archon	  ( 10.)
+  200	  1022	  Nexus	  ( 4.)
