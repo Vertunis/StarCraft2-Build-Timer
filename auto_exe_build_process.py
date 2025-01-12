@@ -29,6 +29,8 @@ def build_exe():
         "pyinstaller",
         "--onefile",
         "--noconsole",
+        #"--debug all",
+        #"--hidden-import=keyboard" # Einzelne Bibliothek manuell einbinden (in dem Fall "keyboard")
         f"--icon={os.path.join(script_dir, 'Data', 'Icons', 'sc2_thumbnail.ico')}",
         "Main.py"
     ]

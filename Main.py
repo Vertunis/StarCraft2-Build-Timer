@@ -1,15 +1,30 @@
 import sys
 import GUI  # Importiert GUI
-from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QLineEdit, QPushButton, QVBoxLayout, QWidget, QComboBox, QLabel, QTextBrowser, QMessageBox, QShortcut, QHeaderView, QTableView
-from PyQt5.QtGui import QKeySequence, QStandardItem, QStandardItemModel, QColor
-from PyQt5.QtCore import QTimer
-from functools import partial
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QHeaderView, QTableView
+from PyQt5.QtGui import QStandardItem, QStandardItemModel, QColor
+from PyQt5.QtCore import QTimer, QThread, pyqtSignal
+
 import os
-import time
+import keyboard
 
+class KeyboardListenerThread(QThread):
+    # Signal, um die Funktion im Hauptthread auszuführen
+    key_pressed = pyqtSignal(str)
 
-#Imports aus anderen .py Skripten
-# from modul_1 import function_Beispiel_1
+    def run(self):
+        keyboard.add_hotkey('F9', self.on_f9)
+        keyboard.add_hotkey('F10', self.on_f10)
+        keyboard.add_hotkey('F11', self.on_f11)
+        keyboard.wait()
+
+    def on_f9(self):
+        self.key_pressed.emit('F9')
+
+    def on_f10(self):
+        self.key_pressed.emit('F10')
+
+    def on_f11(self):
+        self.key_pressed.emit('F11')
 
 #######################################################
 #                   Load your GUI
@@ -23,7 +38,7 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
         #           Connect Buttons, Text, Widgets etc.
         ########################################################
         # Überschrift
-        version = "V.0.4.1"
+        version = "V.0.4.3"
         self.setWindowTitle(f"Star Craft II Build Timer {version}")  # Fenstertitel
 
         # Tool Tab
@@ -53,16 +68,20 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
         self.timer.timeout.connect(self.update_timer)
         self.time_elapsed = 0  # Zeit in Sekunden
 
-        # Shortcuts Start / Stop / Reset
-        shortcut_start = QShortcut(QKeySequence("F9"), self)
-        shortcut_start.activated.connect(self.function_start)
-        shortcut_stop = QShortcut(QKeySequence("F10"), self)
-        shortcut_stop.activated.connect(self.function_stop)
-        shortcut_reset = QShortcut(QKeySequence("F11"), self)
-        shortcut_reset .activated.connect(self.function_reset)
+        # Keyboard Listener in separatem Thread starten
+        self.keyboard_thread = KeyboardListenerThread()
+        self.keyboard_thread.key_pressed.connect(self.handle_hotkey)
+        self.keyboard_thread.start()
     ########################################################
     #                   Declare Function
     ########################################################
+    def handle_hotkey(self, key):
+        if key == 'F9':
+            self.function_start()
+        elif key == 'F10':
+            self.function_stop()
+        elif key == 'F11':
+            self.function_reset()
 
     def on_item_selected(self, item):
         # Wenn ein Item aus der Liste ausgewählt wird
