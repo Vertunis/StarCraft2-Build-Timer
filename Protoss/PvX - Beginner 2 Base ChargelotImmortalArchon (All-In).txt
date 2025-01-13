@@ -1,0 +1,33 @@
+  14	  0:19	  Pylon	  
+  16	  0:39	  Action	  Chrono Probes
+  16	  0:44	  Gateway	  
+  17	  0:52	  Assimilator	  
+  20	  1:23	  Nexus	  
+  20	  1:33	  Cybernetics Core	  
+  20	  1:39	  Assimilator	  
+  22	  1:53	  Pylon	  
+  23	  2:10	  Warp Gate, Adept (Chrono Boost)	  
+  25	  2:12	  Action	  Chrono Probes
+  26	  2:23	  Robotics Facility	  
+  26	  2:24	  Shield Battery	  At Natural
+  29	  2:32	  Stalker	  
+  30	  2:37	  Action	  Chrono Probes (Natural)
+  34	  3:01	  Sentry	  
+  39	  3:12	  Observer	  
+  41	  3:17	  Pylon	  
+  41	  3:21	  Action	  Chrono Probes (Natural)
+  44	  3:33	  Immortal	  
+  49	  3:40	  Forge, Twilight Council	  
+  50	  3:43	  Pylon	  
+  51	  3:52	  Action	  Chrono Robo
+  52	  3:55	  Assimilator x2	  
+  54	  4:06	  Immortal	  
+  58	  4:12	  Pylon	  
+  60	  4:20	  Protoss Ground Weapons Level 1	  
+  60	  4:25	  Pylon	  
+  60	  4:27	  Charge	  
+  60	  4:35	  Gateway x7	  
+  60	  5:01	  Templar Archives	  
+  60	  5:02	  Action	  Chrono Forge
+  60	  5:08	  Warp Prism	  
+  62	  5:13	  Zealot	  

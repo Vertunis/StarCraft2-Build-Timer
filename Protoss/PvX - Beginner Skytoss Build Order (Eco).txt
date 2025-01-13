@@ -1,0 +1,50 @@
+  14	  0:19	  Pylon	  
+  16	  0:44	  Gateway	  
+  16	  0:49	  Assimilator	  
+  20	  1:24	  Nexus	  
+  20	  1:33	  Cybernetics Core	  
+  21	  1:41	  Assimilator	  
+  21	  1:51	  Pylon	  
+  23	  2:07	  Adept (Chrono Boost)	  
+  23	  2:10	  Warp Gate	  
+  27	  2:24	  Stargate	  
+  28	  2:32	  Stalker	  
+  32	  2:45	  Shield Battery	  
+  37	  3:11	  Void Ray (Chrono Boost)	  
+  41	  3:15	  Pylon	  
+  43	  3:25	  Assimilator x2	  
+  45	  3:38	  Stargate	  
+  47	  3:45	  Pylon	  
+  49	  3:59	  Fleet Beacon	  
+  50	  4:09	  Pylon	  
+  52	  4:10	  Forge	  
+  54	  4:42	  Carrier (Chrono Boost)	  
+  54	  4:45	  Photon Cannon x2	  
+  66	  4:48	  Carrier (Chrono Boost)	  
+  70	  5:10	  Nexus	  
+  68	  5:30	  Carrier (Chrono Boost)	  
+  68	  5:35	  Shield Battery	  
+  74	  5:40	  Photon Cannon	  
+  80	  5:45	  Carrier (Chrono Boost)	  
+  82	  5:56	  Protoss Air Weapons Level 1	  
+  84	  6:03	  Photon Cannon	  
+  94	  6:32	  Carrier x2 (Chrono Boost)	  
+  103	  6:44	  Assimilator x2	  
+  108	  7:02	  Stargate	  
+  111	  7:20	  Photon Cannon x2	  
+  111	  7:21	  Shield Battery	  
+  117	  7:24	  Carrier (Chrono Boost)	  
+  123	  7:32	  Carrier (Chrono Boost)	  
+  130	  7:54	  Carrier (Chrono Boost)	  
+  130	  7:59	  Protoss Air Weapons Level 2 (Chrono Boost)	  
+  130	  8:01	  Nexus	  
+  130	  8:18	  Carrier (Chrono Boost)	  
+  136	  8:20	  Photon Cannon x2	  
+  136	  8:24	  Shield Battery	  
+  146	  8:42	  Photon Cannon	  
+  146	  8:43	  Shield Battery x2	  
+  155	  9:01	  Assimilator x2	  
+  164	  9:40	  Nexus	  
+  173	  10:09	  Photon Cannon	  
+  188	  10:48	  Stargate x2	  
+  189	  10:55	  Stargate
