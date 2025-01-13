@@ -71,7 +71,7 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
         self.current_built = self.data[self.selected_value][self.selected_item]
         self.btn_Timer_Start.setEnabled(True)
         self.label_loaded_built.setText(self.selected_item)
-        #print(self.selected_item)
+        #rint(self.selected_item)
         #print(self.current_built)
 
     def update_list(self):
@@ -117,85 +117,91 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
         # Timer Start/Resume
         print("Funktion function_start aktiv")
 
-        # Sichtbarkeit der Buttons aktivieren/deaktivieren
-        self.btn_Timer_Start.setEnabled(False)
-        self.btn_Timer_Stop.setEnabled(True)
-        self.btn_Timer_Reset.setEnabled(True)
+        if self.current_built: # Wenn bereits ein Build geladen wurde, da sich sonst Programm aufhängt bei Makro tasten
 
-        print(rf"Starte Timer für Built: {self.selected_item}")
+            # Sichtbarkeit der Buttons aktivieren/deaktivieren
+            self.btn_Timer_Start.setEnabled(False)
+            self.btn_Timer_Stop.setEnabled(True)
+            self.btn_Timer_Reset.setEnabled(True)
 
-        # Listen zur Speicherung der Ergebnisse aus self.current_built
-        self.worker_nr = []
-        self.timer_min_sec = []
-        self.built_object = []
+            print(rf"Starte Timer für Built: {self.selected_item}")
 
-        # Daten verarbeiten
-        lines = self.current_built.strip().split("\n")  # Entfernt überflüssige Leerzeilen und splittet die Zeilen
-        for line in lines:
-            parts = line.split("\t")  # Teile die Zeile anhand von Tabulatoren auf
-            if len(parts) >= 3:  # Sicherstellen, dass die Zeile mindestens 3 Spalten hat
-                self.worker_nr.append(int(parts[0].strip()))  # Erste Zahl in die Liste #worker
-                self.timer_min_sec.append(parts[1].strip())  # Entfernt Leerzeichen vor der Zeit
-                self.built_object.append(parts[2].lstrip())  # Entfernt Leerzeichen vor dem Objekt
+            # Listen zur Speicherung der Ergebnisse aus self.current_built
+            self.worker_nr = []
+            self.timer_min_sec = []
+            self.built_object = []
 
-        # Index initialisieren
-        self.current_index = 0
+            # Daten verarbeiten
+            lines = self.current_built.strip().split("\n")  # Entfernt überflüssige Leerzeilen und splittet die Zeilen
+            for line in lines:
+                parts = line.split("\t")  # Teile die Zeile anhand von Tabulatoren auf
+                if len(parts) >= 3:  # Sicherstellen, dass die Zeile mindestens 3 Spalten hat
+                    self.worker_nr.append(int(parts[0].strip()))  # Erste Zahl in die Liste #worker
+                    self.timer_min_sec.append(parts[1].strip())  # Entfernt Leerzeichen vor der Zeit
+                    self.built_object.append(parts[2].lstrip())  # Entfernt Leerzeichen vor dem Objekt
 
-        # Ergebnisse ausgeben
-        print("Worker nr:", self.worker_nr)
-        print("timer_min_sec:", self.timer_min_sec)
-        print("built_object:", self.built_object)
+            # Index initialisieren
+            self.current_index = 0
 
-        # Set maximum value for ProgressBar
-        last_time = self.timer_min_sec[-1]
-        minutes, seconds = map(int, last_time.split(":"))
-        self.progressBar_TimeSinceStart.setMaximum(minutes * 60 + seconds + 1)
+            # Ergebnisse ausgeben
+            print("Worker nr:", self.worker_nr)
+            print("timer_min_sec:", self.timer_min_sec)
+            print("built_object:", self.built_object)
 
-        # Initialanzeige des nächsten Bau-Objekts, der Differenzzeit und der Worker-Zahl
-        if self.timer_min_sec:
-            # Nächste Zeit berechnen
-            next_minutes, next_seconds = map(int, self.timer_min_sec[0].split(":"))
-            next_total_seconds = next_minutes * 60 + next_seconds
-            remaining_seconds = max(next_total_seconds - self.time_elapsed, 0)
-            remaining_minutes = remaining_seconds // 60
-            remaining_seconds %= 60
-            remaining_time_str = f"{remaining_minutes}:{remaining_seconds:02}"
+            # Set maximum value for ProgressBar
+            last_time = self.timer_min_sec[-1]
+            minutes, seconds = map(int, last_time.split(":"))
+            self.progressBar_TimeSinceStart.setMaximum(minutes * 60 + seconds + 1)
 
-            # Anzeigen
-            self.textBrowser_timer.setText(remaining_time_str)  # Differenzzeit bis zum nächsten Objekt anzeigen
-            self.textBrowser_object.setText(self.built_object[0])  # Erstes Bau-Objekt anzeigen
-            self.textBrowser_probe_nr.setText(str(self.worker_nr[0]))  # Anzahl der Worker anzeigen
+            # Initialanzeige des nächsten Bau-Objekts, der Differenzzeit und der Worker-Zahl
+            if self.timer_min_sec:
+                # Nächste Zeit berechnen
+                next_minutes, next_seconds = map(int, self.timer_min_sec[0].split(":"))
+                next_total_seconds = next_minutes * 60 + next_seconds
+                remaining_seconds = max(next_total_seconds - self.time_elapsed, 0)
+                remaining_minutes = remaining_seconds // 60
+                remaining_seconds %= 60
+                remaining_time_str = f"{remaining_minutes}:{remaining_seconds:02}"
 
-        # Neuer Code: Fülle das TableView mit den Daten
-        self.populate_table_view()
+                # Anzeigen
+                self.textBrowser_timer.setText(remaining_time_str)  # Differenzzeit bis zum nächsten Objekt anzeigen
+                self.textBrowser_object.setText(self.built_object[0])  # Erstes Bau-Objekt anzeigen
+                self.textBrowser_probe_nr.setText(str(self.worker_nr[0]))  # Anzahl der Worker anzeigen
 
-        # Timer starten
-        self.timer.start(1000)  # Timer alle 1000 ms (1 Sekunde) auslösen
-        self.time_elapsed = 0  # Zurücksetzen der Zeit
+            # Neuer Code: Fülle das TableView mit den Daten
+            self.populate_table_view()
+
+            # Timer starten
+            self.timer.start(1000)  # Timer alle 1000 ms (1 Sekunde) auslösen
+            self.time_elapsed = 0  # Zurücksetzen der Zeit
 
     def function_stop(self):
         # Timer Stop
         print("Funktion function_stop aktiv")
-        # Sichtbarkeit der buttons aktivieren / deaktivieren
-        self.btn_Timer_Start.setEnabled(True)
-        self.btn_Timer_Stop.setEnabled(False)
-        self.btn_Timer_Reset.setEnabled(True)
 
-        # Timer stoppen
-        self.timer.stop()
+        if self.current_built: # Wenn bereits ein Build geladen wurde, da sich sonst Programm aufhängt bei Makro tasten
+            # Sichtbarkeit der buttons aktivieren / deaktivieren
+            self.btn_Timer_Start.setEnabled(True)
+            self.btn_Timer_Stop.setEnabled(False)
+            self.btn_Timer_Reset.setEnabled(True)
+
+            # Timer stoppen
+            self.timer.stop()
 
     def function_reset(self):
         # Timer Reset
         print("Funktion function_reset aktiv")
-        # Sichtbarkeit der buttons aktivieren / deaktivieren
-        self.btn_Timer_Start.setEnabled(True)
-        self.btn_Timer_Stop.setEnabled(False)
-        self.btn_Timer_Reset.setEnabled(False)
 
-        # Timer stoppen und Zeit zurücksetzen
-        self.timer.stop()
-        self.time_elapsed = 0
-        self.textBrowser_timer.clear()  # TextBrowser zurücksetzen
+        if self.current_built: # Wenn bereits ein Build geladen wurde, da sich sonst Programm aufhängt bei Makro tasten
+            # Sichtbarkeit der buttons aktivieren / deaktivieren
+            self.btn_Timer_Start.setEnabled(True)
+            self.btn_Timer_Stop.setEnabled(False)
+            self.btn_Timer_Reset.setEnabled(False)
+
+            # Timer stoppen und Zeit zurücksetzen
+            self.timer.stop()
+            self.time_elapsed = 0
+            self.textBrowser_timer.clear()  # TextBrowser zurücksetzen
 
     def read_textfiles_from_subfolders(self):
         data = {}
