@@ -23,7 +23,7 @@ class UI(QMainWindow, GUI.Ui_MainWindow):
         #           Connect Buttons, Text, Widgets etc.
         ########################################################
         # Überschrift
-        version = "V.1.0.0"
+        version = "V.1.0.1"
         self.setWindowTitle(f"Star Craft II Build Timer {version}")  # Fenstertitel
 
         # Tool Tab
